@@ -68,7 +68,8 @@ return [
     |
     */
 
-    'app_url' => null,
+    // se for produção, mudar para /poll
+    'app_url' => config('app.env') == 'production' ? env('ASSET_URL') : null,
 
     /*
     |--------------------------------------------------------------------------
