@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => null,
+    'asset_url' => env('LIVEWIRE_ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -68,8 +68,7 @@ return [
     |
     */
 
-    // se for produção, mudar para /poll
-    'app_url' => env('APP_URL', null),
+    'app_url' => null,
 
     /*
     |--------------------------------------------------------------------------
