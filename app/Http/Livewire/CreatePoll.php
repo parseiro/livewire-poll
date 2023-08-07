@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class CreatePoll extends Component
 {
-  public string $pollTitle;
+  public string $pollTitle = '';
 
   public $pollOptions = [];
 
@@ -20,7 +20,6 @@ class CreatePoll extends Component
 
   protected $messages = [
     'pollOptions.*.required' => 'The option cannot be empty.',
-
   ];
 
   public function render(): View
@@ -46,10 +45,12 @@ class CreatePoll extends Component
     Poll::create([
       'title' => $this->pollTitle,
     ])->options()->createMany(
-      $this->pollOptions->collect()->map(fn($option) => ['name' => $option])
+      collect($this->pollOptions)->map(fn($option) => ['name' => $option])
     );
 
-    $this->resetExcept();
+    $this->reset('pollTitle', 'pollOptions');
+
+    $this->emit('pollCreated');
   }
 
   public function updated($propertyName): void
